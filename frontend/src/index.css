@@ -1,5 +1,5 @@
 @import "tailwindcss";
-@import "utilities";
+/* @import "utilities"; */
 
 @layer utilities {
   .animate-slide-in {
