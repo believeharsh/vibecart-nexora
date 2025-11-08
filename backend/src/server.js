@@ -6,6 +6,7 @@ import productRoutes from './routes/products.route.js'
 import cartRoutes from './routes/cart.routes.js';
 import checkoutRoutes from './routes/checkout.route.js';
 import { errorHandler, notFound } from "./middlewares/errorHandler.js"; 
+import { keepAlive } from './services/keepAlive.js';
 
 dotenv.config();
 
@@ -60,6 +61,11 @@ app.get('/api/health', (req, res) => {
     uptime: process.uptime()
   });
 });
+
+if (process.env.NODE_ENV === 'production') {
+  const url = 'https://vibecart-nexora.onrender.com';
+  keepAlive(url);
+}
 
 // Routes
 app.use('/api/products', productRoutes);
